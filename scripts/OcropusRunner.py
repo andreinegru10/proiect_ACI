@@ -1,3 +1,4 @@
+#DONE
 import os
 
 LOCAL_BOOK_DIR = "book"
@@ -29,7 +30,7 @@ def removeBookDir():
 def binarizeImage(inputImage):
     command = OCRO_HOME + BINARIZATION_EXE + " " + inputImage
     command += " -o " + LOCAL_BOOK_DIR
-    command = "bash -c \"" + command + "\""
+    command = "bash -c \"" + command + " > /dev/null 2>&1\""
     command = command.replace("\\", "/")
     command = command.replace("C:", "/mnt/c")
     os.system(command)
@@ -37,7 +38,7 @@ def binarizeImage(inputImage):
 def layoutAnalysis():
     command = OCRO_HOME + LAYOUT_EXE + " "
     command += LOCAL_BOOK_DIR + "/0001.bin.png"
-    command = "bash -c \"" + command + "\""
+    command = "bash -c \"" + command + " > /dev/null 2>&1\""
     command = command.replace("\\", "/")
     command = command.replace("C:", "/mnt/c")
     os.system(command)
@@ -46,7 +47,7 @@ def textLineRecognition():
     command = OCRO_HOME + RECOGNITION_EXE + " -Q 4 -m "
     command += OCRO_HOME + "\models\en-default.pyrnn.gz " + LOCAL_BOOK_DIR
     command += "/0001/010001.bin.png"
-    command = "bash -c \"" + command + "\""
+    command = "bash -c \"" + command + " > /dev/null 2>&1\""
     command = command.replace("\\", "/")
     command = command.replace("C:", "/mnt/c")
     os.system(command)

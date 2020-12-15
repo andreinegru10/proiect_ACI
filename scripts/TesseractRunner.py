@@ -1,13 +1,14 @@
+#DONE
 import os
 
 EXE = "tesseract"
-LANG = "-l eng"
-PSM = "--psm 7"
+LANG = ""
+PSM = "--psm 3"
 DPI = "--dpi 300"
 
 def run(inputImage, outputFile):
     command = EXE + " " + inputImage + " " + outputFile + " "
-    command += LANG + " " + PSM + " " + DPI
+    command += LANG + " " + PSM + " " + DPI + " >nul 2>&1"
     os.system(command)
     cleanOutput(outputFile + ".txt")
     return outputFile

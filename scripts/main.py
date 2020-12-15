@@ -1,33 +1,58 @@
-import os
-import FineReaderRunner as frr
-import TesseractRunner as tr
-import OcropusRunner as ocr
-import EvalRunner as er
-import Voter as vote
+#DONE
+import Runner as run
+import argparse
 
-inputImage = "../inputs/line/image137.tiff"
-outputFile = "./out1.txt"
-outputFile2 = "./out2"
-outputFile3 = "./out3.txt"
+Tesseract_Tag = "TS"
+FineReader_Tag = "FR"
+Ocropus_Tag = "OP"
 
-def cleanUp():
-    command = "del out*.txt"
-    os.system(command)
+
+# create the parser
+parser = argparse.ArgumentParser(description='Proiect ACI')
+
+# add arguments to the parser
+parser.add_argument('-i','--input', type=str, metavar='', required=True, help='path to the input folder')
+parser.add_argument('-o','--output', type=str, metavar='', required=True, help='path to the output folder')
+parser.add_argument('-r', '--reference', type=str, metavar='', help='path to the references folder')
+
+# parse arguments
+args = parser.parse_args()
+
+# input path
+inputPath = args.input
+#output path
+outputPath = args.output
+# references path
+referencePath = args.reference
 
 def main():
-    frr.run(inputImage, outputFile)
-    tr.run(inputImage, outputFile2)
-    ocr.run(inputImage, outputFile3)
+    # run the 3 OCR tools for the given input files
+    run.run(inputPath, outputPath)
     
-    #er.eval("../refs/line/target217.txt", "./out3.txt")
-    
-    result = vote.getSolution(outputFile, outputFile2 + ".txt", outputFile3)
+    # run out solution
+    run.vote("TS", "FR", "OP", outputPath)
 
-    print("----------------")
-    print("[" + result + "]")
-    print("----------------")
+    # evaluate result only if asked for it
+    if referencePath != None:
+        # character level
+        print("Tesseract Character Level Recognition Accuracy")
+        run.evaluate(outputPath + "TS/", referencePath)
+        print("FineReader Character Level Recognition Accuracy")
+        run.evaluate(outputPath + "FR/", referencePath)
+        print("Ocropus Character Level Recognition Accuracy")
+        run.evaluate(outputPath + "OP/", referencePath)
+        print("ACI Character Level Recognition Accuracy")
+        run.evaluate(outputPath + "ACI/", referencePath)
 
-    # cleanUp()
+        # word level
+        print("Tesseract Word Level Recognition Accuracy")
+        run.evaluate(outputPath + "TS/", referencePath, True)
+        print("FineReader Word Level Recognition Accuracy")
+        run.evaluate(outputPath + "FR/", referencePath, True)
+        print("Ocropus Word Level Recognition Accuracy")
+        run.evaluate(outputPath + "OP/", referencePath, True)
+        print("ACI Word Level Recognition Accuracy")
+        run.evaluate(outputPath + "ACI/", referencePath, True)
 
 if __name__ == "__main__":
     main()
