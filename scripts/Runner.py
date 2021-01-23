@@ -57,7 +57,7 @@ def evaluate(path, refsPath, words=False):
     print(accAvg)
 
 # wrapper for the voting module functionalities
-def vote(ocrTool1, ocrTool2, ocrTool3, outputPath):
+def vote(ocrTool1, ocrTool2, ocrTool3, outputPath, priorities):
     path1 = outputPath + ocrTool1 + '/'
     path2 = outputPath + ocrTool2 + '/'
     path3 = outputPath + ocrTool3 + '/'
@@ -67,4 +67,4 @@ def vote(ocrTool1, ocrTool2, ocrTool3, outputPath):
         out1 = output
         out2 = output.split('_')[0] + '_' + ocrTool2 + '.txt'
         out3 = output.split('_')[0] + '_' + ocrTool3 + '.txt'
-        vo.getSolution(path1 + out1, path2 + out2, path3 + out3, outputPath + Our_Tag + "/")
+        vo.getSolution(path1 + out1, path2 + out2, path3 + out3, outputPath + Our_Tag + "/", priorities)

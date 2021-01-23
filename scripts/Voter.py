@@ -1,6 +1,7 @@
 #DONE
 from lingpy import *
 import os
+import Align
 
 LITTLE = 'abcdefghijklmnopqrstuvwxyz'
 BIG = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -31,6 +32,8 @@ def readContent(filename):
 
     return content
 
+#Obsolete
+#=========================================================
 # function is used to allign 3 words
 def allign(word1, word2, word3):
     return tuple(mult_align([word1, word2, word3]))
@@ -124,54 +127,68 @@ def allign2(inputLine1, inputLine2, inputLine3):
     os.system("del allign.txt")
 
     return (line1, line2, line3)
+#=========================================================
 
 # character frequency dictionary
-def buildDict(c1, c2, c3):
+def buildDict(c1, c2, c3, priorities):
     d = {}
-    d[c1] = 1
+    d[c1] = (1, priorities[0])
     
     if c2 in d:
-        d[c2] += 1
+        v, p = d[c2]
+        d[c2] = (v+1, p)
     else:
-        d[c2] = 1
+        d[c2] = (1, priorities[1])
 
     if c3 in d:
-        d[c3] += 1
+        v, p = d[c3]
+        d[c3] = (v+1, p)
     else:
-        d[c3] = 1
+        d[c3] = (1, priorities[2])
 
     return d
 
 # the function retrieves the predominant character in a character frequency dictionary
-def dictMax(d):
+def dictMax(d, placeholder):
     maxx = 0
-    c = '-'
+    c = placeholder
 
     for k in d:
-        if k != '-' and d[k] > maxx:
-            maxx = d[k]
+        v, p = d[k]
+        if k != placeholder and v > maxx:
+            maxx = v
             c = k
-    
+
+    minP = 3
+
+    if maxx == 1:
+        for k in d:
+            if k != placeholder:
+                v, p = d[k]
+                if p < minP:
+                    minP = p
+                    c = k
+
     return maxx, c
 
 # the function returns the predominat character of the 3 inputs
-def majority(c1, c2, c3):
-    d = buildDict(c1, c2, c3)
+def majority(c1, c2, c3, placeholder, priorities):
+    d = buildDict(c1, c2, c3, priorities)
 
-    if '-' not in d or d['-'] == 1:
-        maxx, c = dictMax(d)
+    if placeholder not in d or d[placeholder] == 1:
+        maxx, c = dictMax(d, placeholder)
         return c
     else:
-        if c1 != '-':
+        if c1 != placeholder:
             return c1
-        elif c2 != '-':
+        elif c2 != placeholder:
             return c2
         else:
             return c3
 
 # function used for voring at word level    
 def vote(word1, word2, word3):
-    (w1, w2, w3) = allign(word1, word2, word3)
+    w1, w2, w3 = Align.align3(word1, word2, word3, "_")
     result = ""
 
     for i in range(len(w1)):
@@ -180,40 +197,23 @@ def vote(word1, word2, word3):
     return result
 
 # function used for voting at line level 
-def vote2(line1, line2, line3):
-    (w1, w2, w3) = allign2(line1, line2, line3)
+def vote2(line1, line2, line3, placeholder, priorities):
+    w1, w2, w3 = Align.align3(line1, line2, line3, placeholder)
     result = ""
 
     for i in range(len(w1)):
-        result += majority(w1[i], w2[i], w3[i])
+        result += majority(w1[i], w2[i], w3[i], placeholder, priorities)
     
     return result
 
 # the main function of the module
-def getResult(str1, str2, str3):
-    # split textlines into words
-    tokens1 = str1.split(" ")
-    tokens2 = str2.split(" ")
-    tokens3 = str3.split(" ")
-
-    # check if the number of words is equal
-    if len(tokens1) == len(tokens2) and len(tokens1) == len(tokens3):
-        result = ""
-        
-        for i in range(len(tokens1)):
-            result += vote(tokens1[i], tokens2[i], tokens3[i]) + " "
-        
-        result = result[:-1]
-
-        return result
-    # special case
-    else:
-        return vote2(str1, str2, str3)
+def getResult(str1, str2, str3, priorities):
+    return vote2(str1, str2, str3, "_", priorities)
 
 # auxiliary method; reads file contents and writes final result
-def getSolution(fileName1, fileName2, fileName3, outputPath):
+def getSolution(fileName1, fileName2, fileName3, outputPath, priorities):
     baseFileName = fileName1.split('/')[-1].split('_')[0]
-    result = getResult(readContent(fileName1), readContent(fileName2), readContent(fileName3))
+    result = getResult(readContent(fileName1), readContent(fileName2), readContent(fileName3), priorities)
     # write the final result to a text file
     f = open(outputPath + baseFileName + '_ACI.txt', "w")
     f.write(result)

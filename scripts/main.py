@@ -27,10 +27,10 @@ referencePath = args.reference
 
 def main():
     # run the 3 OCR tools for the given input files
-    run.run(inputPath, outputPath)
+    #run.run(inputPath, outputPath)
     
     # run out solution
-    run.vote("TS", "FR", "OP", outputPath)
+    run.vote("TS", "FR", "OP", outputPath, (0, 1, 2))
 
     # evaluate result only if asked for it
     if referencePath != None:
