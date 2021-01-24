@@ -2,13 +2,14 @@
 from lingpy import *
 import os
 import Align
+import string
 
-LITTLE = 'abcdefghijklmnopqrstuvwxyz'
-BIG = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-DIGITS = '0123456789'
+LITTLE = string.ascii_lowercase
+BIG = string.ascii_uppercase
+DIGITS = string.digits
 SYMBOLS = '!$%-,.;\'?/'
 SPACES = ' \t'
-ALPHABET = LITTLE + BIG + DIGITS + SPACES
+ALPHABET = LITTLE + BIG + DIGITS + SPACES + SYMBOLS
 
 # the function is used to preprocess the inputs
 def preprocess(content):
@@ -18,7 +19,7 @@ def preprocess(content):
         if c in ALPHABET:
             result += c
     
-    result = result.replace('\t', ' ')
+    result = result.replace(string.whitespace, ' ')
     result = ' '.join(result.split())
     result = result.strip()
 
