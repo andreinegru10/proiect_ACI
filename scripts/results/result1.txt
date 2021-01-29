@@ -1,0 +1,109 @@
+Mean and Standard Deviation - ref line_no_special
+
+a) Character Level
+Tesseract Character Level Recognition Accuracy
+97.85005617977531 3.8516977866313007
+
+FineReader Character Level Recognition Accuracy
+93.07657303370785 7.539129539340613
+
+Ocropus Character Level Recognition Accuracy
+93.92859550561798 9.31059489188949
+
+ACI Character Level Recognition Accuracy
+96.31211111111111 9.07418909685224
+
+b) Word level
+Tesseract Word Level Recognition Accuracy
+93.20179775280899 12.859081874524527
+
+FineReader Word Level Recognition Accuracy
+79.76505617977529 16.41735520609626
+
+Ocropus Word Level Recognition Accuracy
+77.74398876404494 22.142386530832052
+
+ACI Word Level Recognition Accuracy
+89.78316666666666 16.577136580074512
+
+
+
+//=========================================
+Character Level bazat pe Levensthein distance
+
+Tesseract Character Level Recognition Accuracy
+0.9812887891296798 0.031475798370419535
+
+FineReader Character Level Recognition Accuracy
+0.8813886683438757 0.1873258896684567
+
+Ocropus Character Level Recognition Accuracy
+0.9461321772041719 0.08965640668188303
+
+ACI Character Level Recognition Accuracy
+0.9741118942628167 0.08164997550344161
+
+//============================================
+New Vote _ _ char => nothing 
+
+LEVENSHTEIN CHARACTER LEVEL
+Tesseract Character Level Recognition Accuracy
+0.9812887891296798 0.031475798370419535
+FineReader Character Level Recognition Accuracy
+0.8813886683438757 0.1873258896684567
+Ocropus Character Level Recognition Accuracy
+0.9461321772041719 0.08965640668188303
+ACI Character Level Recognition Accuracy
+0.9795538601525533 0.037057577403701907
+
+OCREval CHARACTER LEVEL
+Tesseract Character Level Recognition Accuracy
+97.85005617977531 3.8516977866313007
+FineReader Character Level Recognition Accuracy
+93.07657303370785 7.539129539340613
+Ocropus Character Level Recognition Accuracy
+93.92859550561798 9.31059489188949
+ACI Character Level Recognition Accuracy
+96.85016759776536 5.539860280478042
+
+OCREval WORD LEVEL
+Tesseract Word Level Recognition Accuracy
+93.20179775280899 12.859081874524527
+FineReader Word Level Recognition Accuracy
+79.76505617977529 16.41735520609626
+Ocropus Word Level Recognition Accuracy
+77.74398876404494 22.142386530832052
+ACI Word Level Recognition Accuracy
+90.28474860335196 15.200377028492026
+
+//===============================================
+New Vote implementat CORECT - THE BEEEEEEEEEEEEST!
+
+Running Voting Algorithm
+LEVENSHTEIN CHARACTER LEVEL
+Tesseract Character Level Recognition Accuracy
+0.9812887891296798 0.031475798370419535
+FineReader Character Level Recognition Accuracy
+0.8813886683438757 0.1873258896684567
+Ocropus Character Level Recognition Accuracy
+0.9461321772041719 0.08965640668188303
+ACI Character Level Recognition Accuracy
+0.9859302423676851 0.03404361979202586
+OCREval CHARACTER LEVEL
+Tesseract Character Level Recognition Accuracy
+97.85005617977531 3.8516977866313007
+FineReader Character Level Recognition Accuracy
+93.07657303370785 7.539129539340613
+Ocropus Character Level Recognition Accuracy
+93.92859550561798 9.31059489188949
+ACI Character Level Recognition Accuracy
+98.24223463687152 4.39329523832519
+OCREval WORD LEVEL
+Tesseract Word Level Recognition Accuracy
+93.20179775280899 12.859081874524527
+FineReader Word Level Recognition Accuracy
+79.76505617977529 16.41735520609626
+Ocropus Word Level Recognition Accuracy
+77.74398876404494 22.142386530832052
+ACI Word Level Recognition Accuracy
+94.40480446927374 12.468986749065055

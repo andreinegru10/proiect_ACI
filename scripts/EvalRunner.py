@@ -1,5 +1,6 @@
 #DONE
 import os
+import Levenshtein as L
 
 WORDS_ACC_EXE = "wordacc"
 CHARS_ACC_EXE = "accuracy"
@@ -39,3 +40,13 @@ def eval(correctFile, generatedFile, words=False):
     os.system("del " + DEFAULT_OUTPUT.replace("/", "\\"))
     
     return report
+
+# character level evalution based on Levensthein distance
+def evalLevensthein(refFilePath, outputFilePath):
+    fRef = open(refFilePath, "r")
+    refContent = fRef.readline()
+
+    fOut = open(outputFilePath, "r")
+    outContent = fOut.readline()
+    
+    return L.ratio(refContent, outContent)

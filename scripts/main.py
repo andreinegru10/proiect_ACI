@@ -27,14 +27,30 @@ referencePath = args.reference
 
 def main():
     # run the 3 OCR tools for the given input files
-    run.run(inputPath, outputPath)
+    #run.run(inputPath, outputPath)
     
     # run out solution
+    print("Running Voting Algorithm")
     run.vote("TS", "FR", "OP", outputPath, (0, 1, 2))
 
     # evaluate result only if asked for it
     if referencePath != None:
+        
+        #run.saveOutputs(outputPath + "TS/", outputPath + "FR/", outputPath + "OP/", outputPath + "ACI/")
+        #'''
+        # Lev distance
+        print("LEVENSHTEIN CHARACTER LEVEL")
+        print("Tesseract Character Level Recognition Accuracy")
+        run.evaluateLevensthein(outputPath + "TS/", referencePath)
+        print("FineReader Character Level Recognition Accuracy")
+        run.evaluateLevensthein(outputPath + "FR/", referencePath)
+        print("Ocropus Character Level Recognition Accuracy")
+        run.evaluateLevensthein(outputPath + "OP/", referencePath)
+        print("ACI Character Level Recognition Accuracy")
+        run.evaluateLevensthein(outputPath + "ACI/", referencePath)
+
         # character level
+        print("OCREval CHARACTER LEVEL")
         print("Tesseract Character Level Recognition Accuracy")
         run.evaluate(outputPath + "TS/", referencePath)
         print("FineReader Character Level Recognition Accuracy")
@@ -45,6 +61,7 @@ def main():
         run.evaluate(outputPath + "ACI/", referencePath)
 
         # word level
+        print("OCREval WORD LEVEL")
         print("Tesseract Word Level Recognition Accuracy")
         run.evaluate(outputPath + "TS/", referencePath, True)
         print("FineReader Word Level Recognition Accuracy")
@@ -53,6 +70,6 @@ def main():
         run.evaluate(outputPath + "OP/", referencePath, True)
         print("ACI Word Level Recognition Accuracy")
         run.evaluate(outputPath + "ACI/", referencePath, True)
-
+        #'''
 if __name__ == "__main__":
     main()

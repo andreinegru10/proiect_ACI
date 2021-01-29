@@ -169,6 +169,34 @@ def dictMax(d, placeholder):
                 if p < minP:
                     minP = p
                     c = k
+            else:
+                c = ""
+                break
+
+    return maxx, c
+
+def dictMaxx(d, placeholder):
+    maxx = 0
+    c = placeholder
+
+    for k in d:
+        v, p = d[k]
+        if v > maxx:
+            maxx = v
+            c = k
+    
+    minP = 3
+
+    if maxx == 1:
+        for k in d:
+            if k != placeholder:
+                v, p = d[k]
+                if p < minP:
+                    minP = p
+                    c = k
+    else:
+        if c == placeholder:
+            c = ""
 
     return maxx, c
 
@@ -176,16 +204,16 @@ def dictMax(d, placeholder):
 def majority(c1, c2, c3, placeholder, priorities):
     d = buildDict(c1, c2, c3, priorities)
 
-    if placeholder not in d or d[placeholder] == 1:
-        maxx, c = dictMax(d, placeholder)
-        return c
-    else:
-        if c1 != placeholder:
-            return c1
-        elif c2 != placeholder:
-            return c2
-        else:
-            return c3
+    # if placeholder not in d or d[placeholder] == 1:
+    maxx, c = dictMaxx(d, placeholder)
+    return c
+    # else:
+    #     if c1 != placeholder:
+    #         return c1
+    #     elif c2 != placeholder:
+    #         return c2
+    #     else:
+    #         return c3
 
 # function used for voring at word level    
 def vote(word1, word2, word3):
