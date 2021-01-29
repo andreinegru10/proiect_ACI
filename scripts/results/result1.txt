@@ -107,3 +107,35 @@ Ocropus Word Level Recognition Accuracy
 77.74398876404494 22.142386530832052
 ACI Word Level Recognition Accuracy
 94.40480446927374 12.468986749065055
+
+
+//===============================================
+New PERSONAL BEST - master brench on git
+Running Voting Algorithm
+LEVENSHTEIN CHARACTER LEVEL
+Tesseract Character Level Recognition Accuracy
+0.9812887891296798 0.031475798370419535
+FineReader Character Level Recognition Accuracy
+0.8813886683438757 0.1873258896684567
+Ocropus Character Level Recognition Accuracy
+0.9461321772041719 0.08965640668188303
+ACI Character Level Recognition Accuracy
+0.9860687587134811 0.03400216877938462
+OCREval CHARACTER LEVEL
+Tesseract Character Level Recognition Accuracy
+97.85005617977531 3.8516977866313007
+FineReader Character Level Recognition Accuracy
+93.07657303370785 7.539129539340613
+Ocropus Character Level Recognition Accuracy
+93.92859550561798 9.31059489188949
+ACI Character Level Recognition Accuracy
+98.24692737430166 4.403048975385319
+OCREval WORD LEVEL
+Tesseract Word Level Recognition Accuracy
+93.20179775280899 12.859081874524527
+FineReader Word Level Recognition Accuracy
+79.76505617977529 16.41735520609626
+Ocropus Word Level Recognition Accuracy
+77.74398876404494 22.142386530832052
+ACI Word Level Recognition Accuracy
+94.54424581005586 12.36238581708302

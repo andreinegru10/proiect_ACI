@@ -189,10 +189,13 @@ def dictMaxx(d, placeholder):
 
     if maxx == 1:
         for k in d:
-            if k != placeholder:
-                v, p = d[k]
-                if p < minP:
-                    minP = p
+            v, p = d[k]
+            if p < minP:
+                minP = p
+                
+                if k == placeholder:
+                    c = ""
+                else:
                     c = k
     else:
         if c == placeholder:
@@ -204,16 +207,9 @@ def dictMaxx(d, placeholder):
 def majority(c1, c2, c3, placeholder, priorities):
     d = buildDict(c1, c2, c3, priorities)
 
-    # if placeholder not in d or d[placeholder] == 1:
     maxx, c = dictMaxx(d, placeholder)
     return c
-    # else:
-    #     if c1 != placeholder:
-    #         return c1
-    #     elif c2 != placeholder:
-    #         return c2
-    #     else:
-    #         return c3
+    
 
 # function used for voring at word level    
 def vote(word1, word2, word3):
